@@ -3,7 +3,7 @@
 /**
  * @author Jack
  * @copyright 2013
- * @date 2013Äê5ÔÂ10ÈÕ
+ * @date 2013å¹´5æœˆ10æ—¥
  */
 
     session_start();
@@ -17,8 +17,8 @@
     //$uid       = $uid_get['uid'];
     
     $whosfollowers = "";
-    $area = "²»ÏŞ";
-    $sex = "²»ÏŞ";
+    $area = "ä¸é™";
+    $sex = "ä¸é™";
     $haspic = "";
     $followers = 0;
     $frienders = 0;
@@ -52,50 +52,39 @@
                 return;
                 
             $addedusers = array (); 
-            echo $followers;
-            echo $area; 
-            echo $cursor;
-            echo $count;
-            echo $whosfollowers;
-             
             $c_followers = $c->followers_by_name($whosfollowers, $cursor, $count);
-            echo $c_followers;
             foreach ($c_followers['users'] as $item){
                 
                    
                    $relation = $c->is_followed_by_id($item['id'], $uid); 
-                   $addedusers[]="1";
-                   if($relation['source']['following']==true && $relation['target']['followed_by']==true){//ÊÇ·ñÒÑ¾­¹Ø×¢
+            
+                   if($relation['source']['following']==true && $relation['target']['followed_by']==true){//æ˜¯å¦å·²ç»å…³æ³¨
                         continue;
                    }
-                   $addedusers[]="2";
-                   $addedusers[]=$area;
-                   echo $area;
-                   if($area != "" && $area !="²»ÏŞ"){
-                    if (strstr($item['location'], $area) == NULL){//²»·ûºÏµØÇøÒªÇó
+
+                   if($area != "ä¸é™"){
+                    if (strstr($item['location'], $area) == NULL){//ä¸ç¬¦åˆåœ°åŒºè¦æ±‚
                         continue;
                     }    
                    }
-                   $addedusers[]="3";
-                   if($haspic == "yes" && $item['profile_image_url']== ""){//Ã»ÓĞÍ¼Ïñ
+
+                   if($haspic == "yes" && $item['profile_image_url']== ""){//æ²¡æœ‰å›¾åƒ
                         continue;
                    }
-                   $addedusers[]="4";
-                   echo $followers;
-                   echo $item['followers_count'];
-                   if($followers > $item['followers_count']){//²»Âú×ã·ÛË¿ÊıÌõ¼ş
+
+                   if($followers > $item['followers_count']){//ä¸æ»¡è¶³ç²‰ä¸æ•°æ¡ä»¶
                         continue;
                    }
-                   $addedusers[]="5";
-                   if($friends > $item['friends_count']){//²»Âú×ã¹Ø×¢ÊıÌõ¼ş
+
+                   if($friends > $item['friends_count']){//ä¸æ»¡è¶³å…³æ³¨æ•°æ¡ä»¶
                         continue;
                    }
-                   $addedusers[]="6";
-                   if($blogs > $item['statuses_count']){//²»Âú×ãÎ¢²©ÊıÌõ¼ş
+
+                   if($blogs > $item['statuses_count']){//ä¸æ»¡è¶³å¾®åšæ•°æ¡ä»¶
                         continue;
                    }
-                   $addedusers[]="7";
-                   //Ìí¼Ó¹Ø×¢
+                   
+                   //æ·»åŠ å…³æ³¨
                    $c->follow_by_id($item['id']);
                    
                    $addedusers[] = $item['screen_name'];
