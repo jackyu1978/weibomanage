@@ -108,7 +108,7 @@ $(document).ready(function (){
 
     $('#btnStart').click(function (){
           //根据按钮文本来判断当前操作
-          if(this.value=="开始添加"){  
+          if(this.value=="开始添加"){ 
                   //使按钮文本变为停止
                   this.value="停止添加";
                   //设置定时器，每0.01s跳一次
@@ -136,18 +136,18 @@ function addfollower(){
             'whosfollowers': whosfollowers.value,
             'area': area.value,
             'sex': sex.value,
-            'haspic': haspic.value,
+            'haspic': haspic.checked?haspic.value:"",
             'followers': followers.value,
             'friends': friends.value,
             'blogs': blogs.value,
             'cursor': 0,
-            'count': 5
+            'count': 1
         },
         beforeSend: function() {},
         success: function(data) {
             //$("#msg").empty(); //清空前一次刷新数据，不清除索表会出错
             //$("#msg").append(data); 
-            alert(data);
+            alert(data.addedusers);
         },
         error:function(data){     
             //$("#msg").append("链接有误，请查看网络链接");   
