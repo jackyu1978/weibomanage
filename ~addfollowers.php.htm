@@ -78,84 +78,43 @@
     </tr>
     <tr bgcolor="#B5E188" align="center">
     <td colspan="2">
-    <input type="button"  id="btnStart" value="开始添加"/></form>
+    <input type="submit"  name="addfollows" value="开始添加"/></form>
     </td>
     </tr>
 </tr>
 </table>
 
-<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-<script type="text/javascript">
 
+<script language="JavaScript" type="text/javascript">
+<!--
 //获取表单中的表单域
-var whosfollowers=document.forms[0].elements["whosfollowers"];
-var area=document.forms[0].elements["area"];
-var sex=document.forms[0].elements["sex"];
-var haspic=document.forms[0].elements["haspic"];
-var followers=document.forms[0].elements["followers"];
-var friends=document.forms[0].elements["friends"];
-var blogs=document.forms[0].elements["blogs"];
-var btnStart=document.forms[0].elements["btnStart"];
+var txt=document.forms[0].elements["txt1"];
+var btnStart=document.forms[0].elements["addfollows"];
 
 //定义定时器的id
 var id;
 //每10毫秒该值增加1
-var seed=0; 
-//获取粉丝的位置
-var cursor=0;
-
-$(document).ready(function (){
-
-    $('#btnStart').click(function (){
-          //根据按钮文本来判断当前操作
-          if(this.value=="开始添加"){  
-                  //使按钮文本变为停止
-                  this.value="停止添加";
-                  //设置定时器，每0.01s跳一次
-                  addfollower();
-                  id=window.setInterval(addfollower,1000*60);//一分钟执行一次
-          }else{
-                  //使按钮文本变为开始
-                  this.value="开始添加";
-                  //取消定时
-                  window.clearInterval(id);
-          }
-    });
-});
-
-
-function addfollower(){
-    $.ajax({
-        type: "POST",
-        url: "/addfollower.php",
-        dataType: 'json',
-        async:false,
-        cache:false,
-        timeout:10000,     //ajax请求超时时间10秒
-        data: {
-            'whosfollowers': whosfollowers.value,
-            'area': area.value,
-            'sex': sex.value,
-            'haspic': haspic.value,
-            'followers': followers.value,
-            'friends': friends.value,
-            'blogs': blogs.value,
-            'cursor': 0,
-            'count': 5
-        },
-        beforeSend: function() {},
-        success: function(data) {
-            //$("#msg").empty(); //清空前一次刷新数据，不清除索表会出错
-            //$("#msg").append(data); 
-            alert(data);
-        },
-        error:function(data){     
-            //$("#msg").append("链接有误，请查看网络链接");   
-        }       
-    });
-    cursor++;
+var seed=0;
+btnStart.onclick=function(){
+      //根据按钮文本来判断当前操作
+      if(this.value=="开始添加"){
+              //使按钮文本变为停止
+              this.value="停止添加";
+              //设置定时器，每0.01s跳一次
+              id=window.setInterval(tip,1000*60);
+      }else{
+              //使按钮文本变为开始
+              this.value="开始添加";
+              //取消定时
+              window.clearInterval(id);
+      }
 }
 
+//让秒表跳一格
+function tip(){
+    addflowers();
+}
+//-->
 </script>
 
 

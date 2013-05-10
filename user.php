@@ -2,7 +2,7 @@
 
 /**
  * @author Jack
- * @copyright 2013
+ * @copyright 20130508
  */
 
 session_start();
