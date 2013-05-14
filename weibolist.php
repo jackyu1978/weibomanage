@@ -28,7 +28,7 @@ $user_message = $c->show_user_by_id( $uid);//根据ID获取用户等基本信息
 	<h3 align="left">发微博</h3>
 	<form action="" >
 		<input type="text" name="text" style="width:300px" />
-		<input type="submit" />
+		<input type="submit" value="发送"/>
 	</form>
 <?php
 if( isset($_REQUEST['text']) ) {

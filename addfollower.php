@@ -45,7 +45,6 @@
     }
     
     
-    
     function addfollows($c,$whosfollowers,$cursor,$count,$area,$sex,$haspic,$followers,$friends,$blogs){
             
             if($c==NULL || $whosfollowers == "")
@@ -57,29 +56,28 @@
                 
                    
                    $relation = $c->is_followed_by_id($item['id'], $uid); 
-            
                    if($relation['source']['following']==true && $relation['target']['followed_by']==true){//是否已经关注
                         continue;
                    }
 
-                   if($area != "不限"){
+                   if($area != "" && $area != "不限"){
                     if (strstr($item['location'], $area) == NULL){//不符合地区要求
                         continue;
                     }    
                    }
-
+                
                    if($haspic == "yes" && $item['profile_image_url']== ""){//没有图像
                         continue;
                    }
-
+                   
                    if($followers > $item['followers_count']){//不满足粉丝数条件
                         continue;
                    }
-
+                  
                    if($friends > $item['friends_count']){//不满足关注数条件
                         continue;
                    }
-
+                   
                    if($blogs > $item['statuses_count']){//不满足微博数条件
                         continue;
                    }

@@ -84,6 +84,20 @@
 </tr>
 </table>
 
+<table id="resultTable" class="sortable">
+	        <thead>
+	            <tr>
+	                <td>成功添加粉丝</td>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <!-- 此处显示ajax返回数据 -->
+	        </tbody>
+	        <tfoot>
+	            <!-- 此处显示ajax返回数据 -->
+	        </tfoot>
+</table>
+
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 
@@ -103,6 +117,8 @@ var id;
 var seed=0; 
 //获取粉丝的位置
 var cursor=0;
+//每次获取粉丝数
+var count=1;
 
 $(document).ready(function (){
 
@@ -140,20 +156,29 @@ function addfollower(){
             'followers': followers.value,
             'friends': friends.value,
             'blogs': blogs.value,
-            'cursor': 0,
-            'count': 1
+            'cursor': cursor,
+            'count': count
         },
         beforeSend: function() {},
         success: function(data) {
             //$("#msg").empty(); //清空前一次刷新数据，不清除索表会出错
             //$("#msg").append(data); 
-            alert(data.addedusers);
+            if(data==undefined || data==""){
+                alert("return null");
+            }else{
+                //alert(data.addedusers);
+                //$.each(data, function(idx,item){  
+                $("#resultTable").find('tbody').append("<tr class='text-en-9pt'><td nowrap>"+data.addedusers+"&nbsp;</td></tr>");
+                        //alert(item.addedusers[0]);
+                    
+                //})
+            }
         },
         error:function(data){     
             //$("#msg").append("链接有误，请查看网络链接");   
         }       
     });
-    cursor++;
+    cursor = cursor+count;
 }
 
 </script>
