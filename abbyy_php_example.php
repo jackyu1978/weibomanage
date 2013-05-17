@@ -8,7 +8,7 @@
   // Name of application you created
   $applicationId = 'sina valid code';
   // Password should be sent to your e-mail after application was created
-  $password = '8GLk+1MeVTcVW9tq9x+Tji/o';
+  $password = 'password';
   $fileName = 'pincode.jpeg';
 
   // Get path to file that we are going to recognize
