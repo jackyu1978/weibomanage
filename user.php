@@ -21,4 +21,5 @@ echo $userid;
 $userinfo = $c->show_user_by_id($userid);
 
 print_r($userinfo);
+
 ?>

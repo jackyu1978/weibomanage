@@ -55,6 +55,7 @@ if (is_array($page_followers))
         echo "<a href='./user.php?id=$item[id]'>";
         echo $item['screen_name'];
         echo " </a> ";
+
 ?>
 </div>
 <?php
